@@ -79,7 +79,22 @@ b {
   height:100%;
 }
 
-
+.checkboxs input[type="checkbox"] {
+  display: none;
+}
+.checkboxs input[type="checkbox"] + label {
+  display: inline-block;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+.checkboxs input[type="checkbox"]:checked + label {
+  color: #fff;
+  border: 2px solid #fff;
+  background-color: #52d3aa;
+}
 
 
 ::-webkit-selection {
