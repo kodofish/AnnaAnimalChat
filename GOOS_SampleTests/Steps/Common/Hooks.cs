@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 using FluentAutomation;
-
-using Microsoft.Practices.Unity;
 using TechTalk.SpecFlow;
+using Unity;
 
 namespace GOOS_SampleTests.Steps.Common
 {
