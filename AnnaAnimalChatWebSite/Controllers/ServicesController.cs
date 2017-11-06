@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AnnaAnimalChatWebSite.Model;
 
 namespace AnnaAnimalChatWebSite.Controllers
 {
@@ -11,7 +10,17 @@ namespace AnnaAnimalChatWebSite.Controllers
         // GET: Services
         public ActionResult Index()
         {
-            return View();
+            var model = new BookingModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Booking(BookingModel model)
+        {
+            if (!ModelState.IsValid) return View("Index",model);
+
+            return View("Index", model);
         }
     }
 }

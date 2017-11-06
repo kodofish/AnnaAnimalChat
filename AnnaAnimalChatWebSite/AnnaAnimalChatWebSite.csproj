@@ -222,6 +222,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Views\Shared\EditorTemplates\CheckBoxList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -259,11 +260,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Model\ChatModel.cs" />
+    <Compile Include="Model\ChatTimeModel.cs" />
+    <Compile Include="Model\PetAmountModel.cs" />
+    <Compile Include="Model\PetStatusModel.cs" />
+    <Compile Include="Model\TimePeriod.cs" />
+    <Compile Include="Model\BookingModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Enums\Position.cs" />
+    <Compile Include="Infrastructure\Extensions\CheckBoxListExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

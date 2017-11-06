@@ -122,7 +122,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
  testRunner.And("選擇聊天方式 \"線上文字訊息\", 聊天時間 \"1hr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And("預約的時段選擇 \"平日 下午12:00~13:30\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("預約的時段選擇 \"A1200\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
  testRunner.When("當我按下確認表單後", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16

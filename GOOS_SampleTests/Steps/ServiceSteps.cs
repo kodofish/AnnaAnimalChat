@@ -1,4 +1,6 @@
-﻿using FluentAutomation;
+﻿using System;
+using System.Threading;
+using FluentAutomation;
 using GOOS_SampleTests.PageObjects;
 using TechTalk.SpecFlow;
 
@@ -26,19 +28,32 @@ namespace GOOS_SampleTests.Steps
         [Given(@"我必須先填寫基本資料")]
         public void Given我必須先填寫基本資料(Table table)
         {
-            
+            var data = table.Rows[0];
+
+            _servicePage.FullName(data["FullName"])
+                .LINE(data["LineId"])
+                .Nickname(data["Claim"])
+                .FamilyName(data["Family"])
+                .SelectStatus(data["AnimalStatus"])
+                .SelectPetAmount(Convert.ToInt32(data["AnimalAmount"]))
+                .EnterPetNameA(data["A_AnimalName"]).UploadPicForPetA(data["A_AnimalPic"])
+                .EnterPetNameB(data["B_AnimalName"]).UploadPicForPetB(data["B_AnimalPic"]);
+
+            Thread.Sleep(10000);
         }
         
         [Given(@"選擇聊天方式 ""(.*)"", 聊天時間 ""(.*)""")]
-        public void Given選擇聊天方式聊天時間(string p0, string p1)
+        public void Given選擇聊天方式聊天時間(string chatWay, string chatLength)
         {
-            ScenarioContext.Current.Pending();
+            _servicePage.SelectChat(chatWay).SelectChatLength(chatLength);
         }
         
         [Given(@"預約的時段選擇 ""(.*)""")]
-        public void Given預約的時段選擇(string p0)
+        public void Given預約的時段選擇(string Period)
         {
-            ScenarioContext.Current.Pending();
+            _servicePage.SelectTimePeriod(Period);
+
+            Thread.Sleep(10000);
         }
         
         [When(@"當我按下確認表單後")]

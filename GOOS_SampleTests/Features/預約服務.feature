@@ -11,6 +11,6 @@ Scenario: 預約線上文字聊天一小時, 並有兩個寵物同伴, 希望預
 		| FullName | LineId   | Claim | Family | AnimalStatus | AnimalAmount | A_AnimalName | A_AnimalPic | B_AnimalName | B_AnimalPic |
 		| 魚尾       | Kodofish | 拔巴    |        | 在世           | 2            |斑斑           | 斑斑.jpg       | 小虎          | 小虎.jpg       |
 	And 選擇聊天方式 "線上文字訊息", 聊天時間 "1hr"
-	And 預約的時段選擇 "平日 下午12:00~13:30"
+	And 預約的時段選擇 "A1200"
 	When 當我按下確認表單後
 	Then 應該能得到 "送出成功" 的訊息
