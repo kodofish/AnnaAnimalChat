@@ -1,18 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
-using AnnaAnimalChatWebSite.Controllers;
 
 namespace AnnaAnimalChatWebSite.Model
 {
     public class BookingModel
     {
-        private decimal _fee;
-        public BookingModel()
-        {
-        }
-
         public SelectList PetStatusSelectListItems => GetPetStatusSelectListItems();
 
         public SelectList PetAmountSelectListItems => GetPetAmountSelectListItems();
@@ -26,36 +21,46 @@ namespace AnnaAnimalChatWebSite.Model
         [Required]
         [Display(Name = "真實中文全名", Prompt = "浮水印?")]
         public string Name { get; set; }
+
         [Required]
         [Display(Name = "LINE名稱／ID")]
         public string LineId { get; set; }
+
         [Required]
         [Display(Name = "自稱")]
         public string NickName { get; set; }
+
         [Display(Name = "旁聽家人的全名")]
         public string FamilyName { get; set; }
+
         [Required]
         [Display(Name = "動物狀態")]
         public int PetStatusId { get; set; }
+
         [Required]
         [Display(Name = "動物數量")]
         public int PetAmount { get; set; }
+
         [Required]
         [Display(Name = "A動物名字或暱稱")]
         public string AnimalNameA { get; set; }
 
         public string PicA { get; set; }
+
         [Display(Name = "B動物名字或暱稱")]
         public string AnimalNameB { get; set; }
+
         public string PicB { get; set; }
+
         [Required]
         [Display(Name = "聊天方式")]
         public int Chat { get; set; }
+
         [Required]
         [Display(Name = "聊天時間")]
         public float Time { get; set; }
 
-        public decimal Fee => _fee;
+        public decimal Fee { get; private set; }
 
         [Required]
         [Display(Name = "希望預約的時段(可複選)")]
@@ -65,18 +70,17 @@ namespace AnnaAnimalChatWebSite.Model
 
         private SelectList GetPetStatusSelectListItems()
         {
-
             var items = new List<PetStatusModel>
             {
-                new PetStatusModel()
+                new PetStatusModel
                 {
                     Id = 1,
-                    Text = "在世",
+                    Text = "在世"
                 },
-                new PetStatusModel()
+                new PetStatusModel
                 {
                     Id = 2,
-                    Text = "往生小天使+300",
+                    Text = "往生小天使+300"
                 }
             };
 
@@ -88,12 +92,12 @@ namespace AnnaAnimalChatWebSite.Model
         {
             var items = new List<PetAmountModel>
             {
-                new PetAmountModel()
+                new PetAmountModel
                 {
                     Id = 1,
                     Text = "1"
                 },
-                new PetAmountModel()
+                new PetAmountModel
                 {
                     Id = 2,
                     Text = "2"
@@ -103,47 +107,48 @@ namespace AnnaAnimalChatWebSite.Model
 
             return new SelectList(items, "Id", "Text", PetAmount);
         }
+
         private SelectList GetChatSelectListItems()
         {
             var items = new List<ChatModel>
             {
-                new ChatModel()
+                new ChatModel
                 {
                     Id = 1,
                     Text = "LINE文字訊息"
                 },
-                new ChatModel()
+                new ChatModel
                 {
                     Id = 2,
                     Text = "面對面"
                 },
-                new ChatModel()
+                new ChatModel
                 {
                     Id = 3,
                     Text = "家訪"
                 }
             };
 
-            return new SelectList(items, "Id", "Text", this.Chat);
+            return new SelectList(items, "Id", "Text", Chat);
         }
 
         private SelectList GetChatTimeSelectListItems()
         {
             var items = new List<ChatTimeModel>
             {
-                new ChatTimeModel()
+                new ChatTimeModel
                 {
                     Id = 1,
                     Value = 1,
                     Text = "1hr"
                 },
-                new ChatTimeModel()
+                new ChatTimeModel
                 {
                     Id = 2,
                     Value = 0.5f,
                     Text = "0.5hr"
                 },
-                new ChatTimeModel()
+                new ChatTimeModel
                 {
                     Id = 3,
                     Value = 1.5f,
@@ -151,7 +156,7 @@ namespace AnnaAnimalChatWebSite.Model
                 }
             };
 
-            return new SelectList(items, "Value", "Text", this.Time);
+            return new SelectList(items, "Value", "Text", Time);
         }
 
         private List<SelectListItem> GetTimePeriodSelectListItems()
@@ -164,71 +169,85 @@ namespace AnnaAnimalChatWebSite.Model
                 : TimePeriod.Split(',');
 
             foreach (var c in timePeriods)
-            {
-                items.Add( new SelectListItem()
+                items.Add(new SelectListItem
                 {
                     Value = c.Id.ToString(),
                     Text = c.Text,
                     Selected = selectedCategories?.Contains(c.Id.ToString()) ?? false
                 });
-            }
             return items;
         }
 
         private IQueryable<TimePeriod> GetAllTimePeriods()
         {
-            return new List<TimePeriod>()
+            return new List<TimePeriod>
             {
-                new TimePeriod()
+                new TimePeriod
                 {
                     Id = 1,
                     Text = "平日 下午12:00"
                 },
-                new TimePeriod()
+                new TimePeriod
                 {
                     Id = 2,
                     Text = "平日 下午14:30"
                 },
-                new TimePeriod()
+                new TimePeriod
                 {
                     Id = 3,
                     Text = "平日 晚上21:30"
                 },
-                new TimePeriod()
+                new TimePeriod
                 {
                     Id = 4,
                     Text = "假日 下午14:30"
                 },
-                new TimePeriod()
+                new TimePeriod
                 {
                     Id = 5,
                     Text = "假日 晚上21:30"
-                },
+                }
             }.AsQueryable();
         }
 
         public void CalculateFee()
         {
-            if (Chat == 1 && Time.Equals(0.5f))
-                _fee = 600M;
+            switch (Chat)
+            {
+                case 1:
+                    switch (Time)
+                    {
+                        case 0.5f:
+                            Fee = 600;
+                            break;
+                        case 1f:
+                            Fee = 1000;
+                            break;
+                        case 1.5f:
+                            Fee = 1300;
+                            break;
+                    }
+                    break;
+                case 2:
+                    switch (Time)
+                    {
+                        case 1f:
+                            Fee = 1200;
+                            break;
+                        case 1.5f:
+                            Fee = 1500;
+                            break;
+                    }
+                    break;
+                case 3:
+                    Fee = 2000;
+                    break;
+            }
 
-            if (Chat == 1 && Time.Equals(1f))
-                _fee = 1000;
-
-            if (Chat == 1 && Time.Equals(1.5f))
-                _fee = 1300;
-
-            if (Chat == 3 && Time.Equals(1.5f))
-                _fee = 2000;
-
-            if (Chat == 2 && Time.Equals(1f))
-                _fee = 1200;
-
-            if (Chat == 2 && Time.Equals(1.5f))
-                _fee = 1500;
-
-            if (PetStatusId == 2)
-                _fee += 300M;
+            if (PetStatusId == 2 &&  Fee > 0)
+                Fee += 300M;
         }
     }
+
+    
 }

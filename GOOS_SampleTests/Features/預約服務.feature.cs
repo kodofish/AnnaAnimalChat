@@ -120,13 +120,13 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.And("我必須先填寫基本資料", ((string)(null)), table1, "And ");
 #line 13
- testRunner.And("選擇聊天方式 \"線上文字訊息\", 聊天時間 \"1hr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("選擇聊天方式 \"LINE文字訊息\", 聊天時間 \"1hr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.And("預約的時段選擇 \"A1200\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("預約的時段選擇 \"TimePeriod_1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
  testRunner.When("當我按下確認表單後", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
- testRunner.Then("應該能得到 \"送出成功\" 的訊息", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("應該能得到 \"已登記成功\" 的訊息", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

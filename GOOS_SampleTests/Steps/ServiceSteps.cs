@@ -38,8 +38,6 @@ namespace GOOS_SampleTests.Steps
                 .SelectPetAmount(Convert.ToInt32(data["AnimalAmount"]))
                 .EnterPetNameA(data["A_AnimalName"]).UploadPicForPetA(data["A_AnimalPic"])
                 .EnterPetNameB(data["B_AnimalName"]).UploadPicForPetB(data["B_AnimalPic"]);
-
-            Thread.Sleep(10000);
         }
         
         [Given(@"選擇聊天方式 ""(.*)"", 聊天時間 ""(.*)""")]
@@ -53,19 +51,19 @@ namespace GOOS_SampleTests.Steps
         {
             _servicePage.SelectTimePeriod(Period);
 
-            Thread.Sleep(10000);
+            
         }
         
         [When(@"當我按下確認表單後")]
         public void When當我按下確認表單後()
         {
-            ScenarioContext.Current.Pending();
+            _servicePage.SubmitForm();
         }
         
         [Then(@"應該能得到 ""(.*)"" 的訊息")]
-        public void Then應該能得到的訊息(string p0)
+        public void Then應該能得到的訊息(string text)
         {
-            ScenarioContext.Current.Pending();
+            _servicePage.ShouldDisplay(text);
         }
     }
 }

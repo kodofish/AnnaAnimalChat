@@ -31,7 +31,7 @@ namespace GOOS_SampleTests.PageObjects
         /// <returns></returns>
         public ServicesPage LINE(string line)
         {
-            I.Enter(line).In("#LINE");
+            I.Enter(line).In("#LineId");
             return this;
         }
 
@@ -65,7 +65,7 @@ namespace GOOS_SampleTests.PageObjects
         /// <returns></returns>
         public ServicesPage SelectStatus(string status)
         {
-            I.Select(Option.Text, status).From("select[name='petStatus']");
+            I.Select(Option.Text, status).From("select[name='PetStatusId']");
             
             return this;
         }
@@ -77,7 +77,7 @@ namespace GOOS_SampleTests.PageObjects
         /// <returns></returns>
         public ServicesPage SelectPetAmount(int amount)
         {
-            I.Select(Option.Text, amount.ToString()).From("select[name='petAmount']");
+            I.Select(Option.Text, amount.ToString()).From("select[name='PetAmount']");
 
             return this;
         }
@@ -141,7 +141,7 @@ namespace GOOS_SampleTests.PageObjects
         /// <returns></returns>
         public ServicesPage SelectChat(string chatWay)
         {
-            I.Select(Option.Text, chatWay).From("select[name='chat']");
+            I.Select(Option.Text, chatWay).From("select[name='Chat']");
 
             return this;
         }
@@ -153,7 +153,7 @@ namespace GOOS_SampleTests.PageObjects
         /// <returns></returns>
         public ServicesPage SelectChatLength(string lengthTime)
         {
-            I.Select(Option.Text, lengthTime).From("select[name='lengthTime']");
+            I.Select(Option.Text, lengthTime).From("select[name='Time']");
 
             return this;
         }
@@ -177,6 +177,18 @@ namespace GOOS_SampleTests.PageObjects
         public ServicesPage SelectTimePeriod(string Period)
         {
             I.Click($"#{Period}");
+            return this;
+        }
+
+        public ServicesPage SubmitForm()
+        {
+            I.Click("#submit");
+            return this;
+        }
+
+        public ServicesPage ShouldDisplay(string resultText)
+        {
+            I.Assert.Text(resultText).In("#message");
             return this;
         }
 
