@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using AnnaAnimalChatWebSite.Model;
+using AnnaAnimalChatWebSite.Services;
 
 namespace AnnaAnimalChatWebSite.Controllers
 {
     public class ServicesController : Controller
     {
+        private BookingServices _bookingService;
+
+        public ServicesController()
+        {
+            _bookingService = new BookingServices();
+        }
         // GET: Services
         public ActionResult Index()
         {
@@ -26,12 +34,18 @@ namespace AnnaAnimalChatWebSite.Controllers
 
             if (!ModelState.IsValid)
             {
-
                 return View("Index", model);
             }
 
-            ViewBag.Message = "已登記成功";
+            model = _bookingService.Register(model);
+            
             return View("Index", model);
         }
+    }
+
+    public enum BookingResult
+    {
+        Success,
+        NotProcess
     }
 }

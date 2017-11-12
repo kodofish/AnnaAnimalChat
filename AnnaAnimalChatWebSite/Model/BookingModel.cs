@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using AnnaAnimalChatWebSite.Controllers;
 
 namespace AnnaAnimalChatWebSite.Model
 {
     public class BookingModel
     {
+        public BookingModel()
+        {
+            Result = BookingResult.NotProcess;
+        }
         public SelectList PetStatusSelectListItems => GetPetStatusSelectListItems();
 
         public SelectList PetAmountSelectListItems => GetPetAmountSelectListItems();
@@ -46,13 +52,13 @@ namespace AnnaAnimalChatWebSite.Model
         public string AnimalNameA { get; set; }
 
         [Required(ErrorMessage = "請上傳動物圖片")]
-        public string PicA { get; set; }
+        public HttpPostedFileBase PicA { get; set; }
 
         [Display(Name = "B動物名字或暱稱")]
         public string AnimalNameB { get; set; }
 
         [Required(ErrorMessage = "請上傳動物圖片")]
-        public string PicB { get; set; }
+        public HttpPostedFileBase PicB { get; set; }
 
         [Required(ErrorMessage = "請選擇聊天方式")]
         [Display(Name = "聊天方式")]
@@ -68,6 +74,8 @@ namespace AnnaAnimalChatWebSite.Model
         [Display(Name = "希望預約的時段(可複選)")]
 
         public string TimePeriod { get; set; }
+
+        public BookingResult Result { get; set; }
 
         private SelectList GetPetStatusSelectListItems()
         {
