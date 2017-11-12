@@ -11,6 +11,7 @@ namespace AnnaAnimalChatWebSite.Services
     {
         public BookingModel Register(BookingModel model)
         {
+            //Todo: 未實作
             model.Result = BookingResult.Success;
             return model;
         }

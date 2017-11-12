@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
@@ -23,7 +24,12 @@ namespace AnnaAnimalChatWebSite
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
+            HttpRuntimeSection section = WebConfigurationManager.GetSection("system.web/httpRuntime") as HttpRuntimeSection;
+            if (Request.ContentLength > section?.MaxRequestLength * 1024)
+            {
 
+                Response.Redirect("~/Error/FileOverSize");
+            }
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
