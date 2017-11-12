@@ -24,6 +24,8 @@ namespace AnnaAnimalChatWebSite.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [HandleError(ExceptionType = typeof(HttpAntiForgeryException), View = "CSRF_Error")]
         public ActionResult Booking(BookingModel model)
         {
             if (model.PetAmount < 2)

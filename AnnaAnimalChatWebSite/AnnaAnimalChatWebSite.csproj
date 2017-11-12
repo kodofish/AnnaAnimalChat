@@ -224,6 +224,7 @@
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <Content Include="Views\Shared\EditorTemplates\CheckBoxList.cshtml" />
     <Content Include="Views\Error\FileOverSize.cshtml" />
+    <Content Include="Views\Shared\CSRF_Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
