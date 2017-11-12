@@ -18,7 +18,17 @@ namespace AnnaAnimalChatWebSite.Controllers
         [HttpPost]
         public ActionResult Booking(BookingModel model)
         {
-            //if (!ModelState.IsValid) return View("Index",model);
+            if (model.PetAmount < 2)
+            {
+                ModelState["AnimalNameB"].Errors.Clear();
+                ModelState["PicB"].Errors.Clear();
+            }
+
+            if (!ModelState.IsValid)
+            {
+
+                return View("Index", model);
+            }
 
             ViewBag.Message = "已登記成功";
             return View("Index", model);

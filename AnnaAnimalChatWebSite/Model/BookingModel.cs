@@ -18,55 +18,56 @@ namespace AnnaAnimalChatWebSite.Model
 
         public List<SelectListItem> TimePeriodSelectListItems => GetTimePeriodSelectListItems();
 
-        [Required]
+        [Required(ErrorMessage = "請輸入你的真實中文全名")]
         [Display(Name = "真實中文全名", Prompt = "浮水印?")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "請輸你你的 LINE名稱/ID")]
         [Display(Name = "LINE名稱／ID")]
         public string LineId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "請輸入你的自稱")]
         [Display(Name = "自稱")]
         public string NickName { get; set; }
 
         [Display(Name = "旁聽家人的全名")]
         public string FamilyName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "請輸入你的動物狀態")]
         [Display(Name = "動物狀態")]
         public int PetStatusId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "請輸入動物數量")]
         [Display(Name = "動物數量")]
         public int PetAmount { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "請輸入動物名字或暱稱")]
         [Display(Name = "A動物名字或暱稱")]
         public string AnimalNameA { get; set; }
 
+        [Required(ErrorMessage = "請上傳動物圖片")]
         public string PicA { get; set; }
 
         [Display(Name = "B動物名字或暱稱")]
         public string AnimalNameB { get; set; }
 
+        [Required(ErrorMessage = "請上傳動物圖片")]
         public string PicB { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "請選擇聊天方式")]
         [Display(Name = "聊天方式")]
         public int Chat { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "請選擇聊天時間")]
         [Display(Name = "聊天時間")]
         public float Time { get; set; }
 
         public decimal Fee { get; private set; }
 
-        [Required]
+        [Required(ErrorMessage = "請選擇希望預約的時段")]
         [Display(Name = "希望預約的時段(可複選)")]
 
         public string TimePeriod { get; set; }
-
 
         private SelectList GetPetStatusSelectListItems()
         {

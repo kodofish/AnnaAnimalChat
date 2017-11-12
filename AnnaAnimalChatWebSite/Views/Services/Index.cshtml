@@ -176,11 +176,13 @@
                 <div class="col-md-6 field">
                     @Html.LabelFor(it => it.Name)
                     @Html.EditorFor(it => it.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("Name", new {@class= "text-danger" })
                     <h5>您必須是<b>主要照顧者</b>才可以預約！請尊重隱私。</h5>
                     </div>
                 <div class="col-md-6 field">
                     @Html.LabelFor(it => it.LineId)
                     @Html.EditorFor(it => it.LineId, new { htmlAttributes = new { @class = "form-control", @placeholder = "安娜/@sbd7852v" } })
+                    @Html.ValidationMessage("LineId", new { @class = "text-danger" })
                 </div>
 
                 </div>
@@ -188,11 +190,13 @@
                 <div class="col-md-6 field">
                     @Html.LabelFor(it => it.NickName)
                     @Html.EditorFor(it => it.NickName, new { htmlAttributes = new { @class = "form-control", @placeholder = "馬麻?葛格?" } })
+                    @Html.ValidationMessage("NickName", new { @class = "text-danger" })
                     <h5>如何和陪伴動物自稱自己?(馬麻?葛格?)</h5>
                 </div>  
                 <div class="col-md-6 field">
                     @Html.LabelFor(it => it.FamilyName)
                     @Html.EditorFor(it => it.FamilyName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("FamilyName", new { @class = "text-danger" })
                     <h5>若沒有可不填</h5>
                 </div>
             </div>
@@ -202,11 +206,13 @@
                 <div class="col-md-6 field">
                     @Html.LabelFor(it => it.PetStatusId)
                     @Html.DropDownListFor(it=>it.PetStatusId, Model.PetStatusSelectListItems, new { Id = "PetStatusId", Name= "PetStatusId", @class="form-control" } )
+                    @Html.ValidationMessage("PetStatusId", new { @class = "text-danger" })
                     <h5></h5>
                 </div>
                 <div class="col-md-6 field">
                     @Html.LabelFor(it => it.PetAmount)
                     @Html.DropDownListFor(it => it.PetAmount, Model.PetAmountSelectListItems, new { Id = "PetAmount", Name = "PetAmount", @class = "form-control" })
+                    @Html.ValidationMessage("PetAmount", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -215,6 +221,7 @@
                 <div class="col-md-6 field">
                     @Html.LabelFor(it => it.AnimalNameA)
                     @Html.EditorFor(it => it.AnimalNameA, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("AnimalNameA", new { @class = "text-danger" })
                     <h5>最常怎麼叫他？</h5>
                 </div>
                 <div class="col-md-6 field">
@@ -224,6 +231,7 @@
                         <input type="file" name="PicA" id="PicA" />
                     </div>
                     <h5>彩色、眼睛清楚、一個月內</h5>
+                    @Html.ValidationMessage("PicA", new { @class = "text-danger" })
                 </div>
             </div>
             <!--B動物-->
@@ -231,6 +239,7 @@
                 <div class="col-md-6 field">
                     @Html.LabelFor(it => it.AnimalNameB)
                     @Html.EditorFor(it => it.AnimalNameB, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("AnimalNameB", new { @class = "text-danger" })
                     <h5>最常怎麼叫他？</h5>
                 </div>
                 <div class="col-md-6 field">
@@ -239,6 +248,7 @@
                         <span>選擇照片</span>
                         <input type="file" name="PicB" id="PicB" />
                     </div><h5>彩色、眼睛清楚、一個月內</h5>
+                    @Html.ValidationMessage("PicB", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group row">
@@ -246,10 +256,12 @@
                 <div class="col-md-5 field">
                     @Html.LabelFor(it => it.Chat)
                     @Html.DropDownListFor(it => it.Chat, Model.ChatSelectListItems, new { Id = "Chat", Name = "Chat", @class = "form-control" })
+                    @Html.ValidationMessage("Chat", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-4 field">
                     @Html.LabelFor(it => it.Time)
                     @Html.DropDownListFor(it => it.Time, Model.ChatTimeSelectListItems, new { Id = "Time", Name = "Time", @class = "form-control" })
+                    @Html.ValidationMessage("Time", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-3 field">
                     <label for="fee">費用</label>
@@ -271,7 +283,9 @@
                                 Numbers = 3
                             })
                     </div>
-                    </div>
+                    @Html.ValidationMessage("TimePeriod", new { @class = "text-danger" })
+                </div>
+
             </div>
 
             <div class="form-group row">
